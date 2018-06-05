@@ -11,16 +11,16 @@ class Storage
   end
 
   def write(data)
-    connection.insert_rows(TABLE, names: %w(year date time dt host cpu_load memory_usage)) do |rows|
+    connection.insert_rows(TABLE, names: %w(year date dt host cpu_load memory_usage)) do |rows|
       now = Time.now
 
       rows << [
-        now.year,
-        now.strftime('%Y-%M-%d'),
-        now.strftime('%Y-%M-%d %H:%m'),
+        now.year.to_i,
+        now.strftime('%Y-%m-%d'),
+        now.strftime('%Y-%m-%d %H:%M:%S'),
         data[:host],
-        data[:cpu_load].to_f * 1000,
-        data[:memory_usage].to_f * 1000
+        (data[:cpu_load].to_f * 1000).to_i,
+        (data[:memory_usage].to_f * 1000).to_i
       ]
     end
   end
