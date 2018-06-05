@@ -1,0 +1,8 @@
+daemon:
+  build: .
+
+
+server:
+  image: sickp/alpine-sshd:7.5
+  ports:
+    - "2222:22"
