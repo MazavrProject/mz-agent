@@ -1,5 +1,5 @@
 up: build
-	docker-compose up
+	docker-compose up daemon
 
 shell: build
 	docker-compose run --rm daemon sh

@@ -1,11 +1,10 @@
 daemon:
   build: .
   environment:
-    - docker/env
+    - HOSTS=server
 
   links:
     - server
-
 
 server:
   build: .
