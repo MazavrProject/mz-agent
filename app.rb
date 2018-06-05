@@ -7,7 +7,11 @@ logger = Logger.new STDOUT
 logger.info "Monitoring started!"
 
 system = System.new ENV['HOSTS']
-storage = Storage.new ENV['CLICKHOUSE']
+storage = Storage.new(
+  host: ENV['CLICKHOUSE_HOST'], 
+  user: ENV['CLICKHOUSE_USER'], 
+  password: ENV['CLICKHOUSE_PASSWORD'], 
+)
 
 while true
 

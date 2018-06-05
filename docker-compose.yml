@@ -2,7 +2,7 @@ daemon:
   build: .
   environment:
     - HOSTS=server
-    - CLICKHOUSE=clickhouse
+    - CLICKHOUSE_HOST=clickhouse
 
   links:
     - server
