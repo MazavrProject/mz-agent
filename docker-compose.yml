@@ -1,8 +1,16 @@
 daemon:
   build: .
+  environment:
+    - docker/env
+
+  links:
+    - server
 
 
 server:
-  image: sickp/alpine-sshd:7.5
+  build: .
+  dockerfile: Dockerfile.server 
   ports:
     - "2222:22"
+  volumes:
+    - "./docker/id_rsa.pub:/root/.ssh/authorized_keys"
