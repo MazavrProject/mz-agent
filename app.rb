@@ -1,15 +1,22 @@
 require 'logger'
 require 'require_all'
-
 require_all 'lib'
-
-logger.info "Monitoring started!"
 
 logger = Logger.new STDOUT
 
-system = System.new(ENV['HOSTS'])
+logger.info "Monitoring started!"
+
+system = System.new ENV['HOSTS']
+storage = Storage.new ENV['CLICKHOUSE']
 
 while true
-  logger.info "CPU: #{system.cpu_load.round(2)}, Memory: #{system.memory_usage.round(2)}"
+
+
+  data =  { host: system.host, cpu_load: system.cpu_load.round(2), memory_usage: system.memory_usage.round(2) }
+  logger.info "#{data.to_json}"
+
+  storage.write data
+
+  `ls`
   sleep 1
 end

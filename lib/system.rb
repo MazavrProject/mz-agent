@@ -1,6 +1,8 @@
 require 'net/ssh'
 
 class System
+  attr_reader :host
+
   def initialize(host)
     @host = host
   end

@@ -2,14 +2,28 @@ daemon:
   build: .
   environment:
     - HOSTS=server
+    - CLICKHOUSE=clickhouse
 
   links:
     - server
+    - clickhouse
+
+  volumes:
+    - "./docker/id_rsa:/root/.ssh/id_rsa"
 
 server:
   build: .
   dockerfile: Dockerfile.server 
-  ports:
-    - "2222:22"
   volumes:
     - "./docker/id_rsa.pub:/root/.ssh/authorized_keys"
+
+clickhouse:
+  image: yandex/clickhouse-server
+
+  volumes:
+    - "./volumes/clickhouse:/var/lib/clickhouse"
+
+  ulimits:
+    nofile:
+      soft: 262144
+      hard: 262144
