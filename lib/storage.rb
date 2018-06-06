@@ -5,8 +5,8 @@ Clickhouse.logger = Logger.new(STDOUT)
 class Storage
   TABLE = 'server_stats'.freeze
 
-  def initialize(host:, user: nil, password: nil)
-    Clickhouse.establish_connection host: host, username: user, password: password
+  def initialize(host:, user: nil, password: nil, database: nil)
+    Clickhouse.establish_connection host: host, username: user, password: password, database: database
     create_table
   end
 

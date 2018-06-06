@@ -11,6 +11,7 @@ storage = Storage.new(
   host: ENV['CLICKHOUSE_HOST'], 
   user: ENV['CLICKHOUSE_USER'], 
   password: ENV['CLICKHOUSE_PASSWORD'], 
+  database: ENV['CLICKHOUSE_DATABASE'], 
 )
 
 while true
