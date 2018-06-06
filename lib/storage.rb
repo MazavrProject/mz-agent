@@ -6,7 +6,7 @@ class Storage
   TABLE = 'server_stats'.freeze
 
   def initialize(host:, user: nil, password: nil)
-    Clickhouse.establish_connection host: host, user: user, password: password
+    Clickhouse.establish_connection host: host, username: user, password: password
     create_table
   end
 
